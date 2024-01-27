@@ -23,7 +23,7 @@ CREATE TABLE messages (
     message TEXT NOT NULL,
     random_id VARCHAR(7) NOT NULL UNIQUE
 );
-
+```
 ## требование
 
 1. PHP 7.4 или выше.
