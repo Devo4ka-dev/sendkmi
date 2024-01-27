@@ -41,7 +41,7 @@ echo "ваше сообщение" | curl -X POST -d @- https://kmi.devo4ka.top/
 ## Тест
 
 Наш бот для теста этого скрипта в телеграм
-https://t.mehttps://t.me/yugwfiuomdcpsobot
+https://t.me/yugwfiuomdcpsobot
 
 ## Связь
 
