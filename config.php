@@ -2,14 +2,14 @@
 
 // Конфигурация для подключения к базе данных
 $database_config = array(
-    'host' => '-',
-    'port' => '-', 
-    'username' => '-',
-    'password' => '-',
-    'database' => '-'
+    'host' => 'ваш_хост',
+    'port' => 'порт', 
+    'username' => 'пользователь',
+    'password' => 'пароль',
+    'database' => 'название_базы_данных'
 );
 
-// Ссылка
+// Ссылка на ваш домен
 $example_link = 'https://kmi.devo4ka.top';
 
 ?>
