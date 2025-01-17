@@ -13,10 +13,9 @@ This project is a robust message-handling service that allows users to send and 
 Follow these steps to set up the project:
 
 1. Clone this repository to your local machine or server.
-2. Install necessary dependencies using Composer if applicable.
-3. Configure the `config.php` file with your database and security parameters.
-4. Import the provided database schema (see "Database Setup" below).
-5. Start your PHP-enabled web server and test the setup.
+2. Configure the `config.php` file with your database and security parameters.
+3. Import the provided database schema (see "Database Setup" below).
+4. Start your PHP-enabled web server and test the setup.
 
 ---
 
@@ -61,7 +60,7 @@ CREATE TABLE `request_limits` (
 
 -- Sample data for `messages`
 INSERT INTO `messages` (`id`, `message`, `random_id`, `created_at`, `source`, `user_agent`, `encrypted`) VALUES
-(1, '#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}\n', 'hello', '2025-01-17 10:24:54', 'web', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 0);
+(1, '#include <stdio.h>\n\nint main() {\n    printf("Hello, World!\\n");\n    return 0;\n}\n', 'hello', '2025-01-17 10:24:54', 'web', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 0);
 ```
 
 ---
@@ -129,10 +128,9 @@ For more information or support, visit:
 Следуйте этим шагам для настройки проекта:
 
 1. Клонируйте этот репозиторий на вашу локальную машину или сервер.
-2. Установите необходимые зависимости с помощью Composer, если это применимо.
-3. Настройте файл `config.php` с параметрами вашей базы данных и безопасности.
-4. Импортируйте предоставленную схему базы данных (см. раздел "Настройка базы данных" ниже).
-5. Запустите веб-сервер с поддержкой PHP и проверьте настройку.
+2. Настройте файл `config.php` с параметрами вашей базы данных и безопасности.
+3. Импортируйте предоставленную схему базы данных (см. раздел "Настройка базы данных" ниже).
+4. Запустите веб-сервер с поддержкой PHP и проверьте настройку.
 
 ---
 
@@ -177,7 +175,7 @@ CREATE TABLE `request_limits` (
 
 -- Sample data for `messages`
 INSERT INTO `messages` (`id`, `message`, `random_id`, `created_at`, `source`, `user_agent`, `encrypted`) VALUES
-(1, '#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}\n', 'hello', '2025-01-17 10:24:54', 'web', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 0);
+(1, '#include <stdio.h>\n\nint main() {\n    printf("Hello, World!\\n");\n    return 0;\n}\n', 'hello', '2025-01-17 10:24:54', 'web', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 0);
 ```
 
 ---
@@ -205,7 +203,7 @@ INSERT INTO `messages` (`id`, `message`, `random_id`, `created_at`, `source`, `u
 Для отправки сообщения используйте следующую команду `curl`:
 
 ```bash
-echo "your message" | curl -X POST -d @- https://kmi.devo4ka.top
+echo "message" | curl -X POST -d @- https://kmi.devo4ka.top
 ```
 
 ### Получение сообщения

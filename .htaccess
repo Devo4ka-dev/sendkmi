@@ -2,10 +2,8 @@
     RewriteEngine On
     RewriteBase /
 
-    # Проверка, что файл или директория с указанным именем не существует
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
 
-    # Преобразование без .php в .php
     RewriteRule ^([^/]+)$ $1.php [L]
 </IfModule>
