@@ -61,7 +61,7 @@ CREATE TABLE `request_limits` (
 
 -- Sample data for `messages`
 INSERT INTO `messages` (`id`, `message`, `random_id`, `created_at`, `source`, `user_agent`, `encrypted`) VALUES
-(14, '#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}\n', 'hello', '2025-01-17 10:24:54', 'web', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 0);
+(1, '#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}\n', 'hello', '2025-01-17 10:24:54', 'web', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 0);
 ```
 
 ---
@@ -177,7 +177,7 @@ CREATE TABLE `request_limits` (
 
 -- Sample data for `messages`
 INSERT INTO `messages` (`id`, `message`, `random_id`, `created_at`, `source`, `user_agent`, `encrypted`) VALUES
-(14, '#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}\n', 'hello', '2025-01-17 10:24:54', 'web', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 0);
+(1, '#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}\n', 'hello', '2025-01-17 10:24:54', 'web', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 0);
 ```
 
 ---
