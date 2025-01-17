@@ -25,39 +25,43 @@ Follow these steps to set up the project:
 Run the following SQL script to create the required database schema:
 
 ```sql
-CREATE DATABASE IF NOT EXISTS message_system CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE message_system;
+-- Table `messages`
+CREATE TABLE `messages` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `message` MEDIUMTEXT,
+  `random_id` VARCHAR(7) NOT NULL UNIQUE,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `source` VARCHAR(50) DEFAULT 'unknown',
+  `user_agent` TEXT,
+  `encrypted` TINYINT(1) DEFAULT 1,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Table for storing messages
-CREATE TABLE messages (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    message TEXT NOT NULL,
-    random_id VARCHAR(10) NOT NULL UNIQUE,
-    source ENUM('web', 'cli') NOT NULL DEFAULT 'web',
-    user_agent VARCHAR(255) DEFAULT NULL,
-    encrypted BOOLEAN NOT NULL DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Table `message_logs`
+CREATE TABLE `message_logs` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `message_id` VARCHAR(7) NOT NULL,
+  `ip_address` VARCHAR(45) NOT NULL,
+  `user_agent` TEXT,
+  `request_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `request_type` ENUM('read', 'create') NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `message_id` (`message_id`),
+  CONSTRAINT `message_logs_ibfk_1` FOREIGN KEY (`message_id`) REFERENCES `messages` (`random_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Table for logging requests
-CREATE TABLE message_logs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    message_id VARCHAR(10) NOT NULL,
-    ip_address VARCHAR(45) NOT NULL,
-    user_agent VARCHAR(255) DEFAULT NULL,
-    request_type ENUM('read', 'write') NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (message_id) REFERENCES messages(random_id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Table `request_limits`
+CREATE TABLE `request_limits` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `ip_address` VARCHAR(45) NOT NULL UNIQUE,
+  `request_count` INT DEFAULT 1,
+  `last_request` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Table for request rate limiting
-CREATE TABLE request_limits (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    ip_address VARCHAR(45) NOT NULL UNIQUE,
-    request_count INT NOT NULL DEFAULT 0,
-    last_request TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Sample data for `messages`
+INSERT INTO `messages` (`id`, `message`, `random_id`, `created_at`, `source`, `user_agent`, `encrypted`) VALUES
+(14, '#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}\n', 'hello', '2025-01-17 10:24:54', 'web', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 0);
 ```
 
 ---
@@ -137,39 +141,43 @@ For more information or support, visit:
 Выполните следующий SQL-скрипт для создания требуемой схемы базы данных:
 
 ```sql
-CREATE DATABASE IF NOT EXISTS message_system CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE message_system;
+-- Table `messages`
+CREATE TABLE `messages` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `message` MEDIUMTEXT,
+  `random_id` VARCHAR(7) NOT NULL UNIQUE,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `source` VARCHAR(50) DEFAULT 'unknown',
+  `user_agent` TEXT,
+  `encrypted` TINYINT(1) DEFAULT 1,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Таблица для хранения сообщений
-CREATE TABLE messages (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    message TEXT NOT NULL,
-    random_id VARCHAR(10) NOT NULL UNIQUE,
-    source ENUM('web', 'cli') NOT NULL DEFAULT 'web',
-    user_agent VARCHAR(255) DEFAULT NULL,
-    encrypted BOOLEAN NOT NULL DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Table `message_logs`
+CREATE TABLE `message_logs` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `message_id` VARCHAR(7) NOT NULL,
+  `ip_address` VARCHAR(45) NOT NULL,
+  `user_agent` TEXT,
+  `request_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `request_type` ENUM('read', 'create') NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `message_id` (`message_id`),
+  CONSTRAINT `message_logs_ibfk_1` FOREIGN KEY (`message_id`) REFERENCES `messages` (`random_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Таблица для логирования запросов
-CREATE TABLE message_logs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    message_id VARCHAR(10) NOT NULL,
-    ip_address VARCHAR(45) NOT NULL,
-    user_agent VARCHAR(255) DEFAULT NULL,
-    request_type ENUM('read', 'write') NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (message_id) REFERENCES messages(random_id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Table `request_limits`
+CREATE TABLE `request_limits` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `ip_address` VARCHAR(45) NOT NULL UNIQUE,
+  `request_count` INT DEFAULT 1,
+  `last_request` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Таблица для ограничения частоты запросов
-CREATE TABLE request_limits (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    ip_address VARCHAR(45) NOT NULL UNIQUE,
-    request_count INT NOT NULL DEFAULT 0,
-    last_request TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Sample data for `messages`
+INSERT INTO `messages` (`id`, `message`, `random_id`, `created_at`, `source`, `user_agent`, `encrypted`) VALUES
+(14, '#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}\n', 'hello', '2025-01-17 10:24:54', 'web', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 0);
 ```
 
 ---
