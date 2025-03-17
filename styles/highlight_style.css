@@ -1,0 +1,47 @@
+@font-face {
+    font-family: "SFPL";
+    src: url('.././styles/FProText-Light.ttf');
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #272822;
+    font-family: "SFPL";
+}
+
+#editor {
+    width: 100%;
+    height: calc(100vh - 80px);
+    font-size: 14px;
+}
+
+.theme-selector {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.code-editor {
+    width: 100%;
+    height: calc(100vh - 40px);
+    font-size: 14px;
+}
+
+select {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+    padding: 3px;
+    border-radius: 3px;
+}

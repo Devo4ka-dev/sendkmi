@@ -1,0 +1,222 @@
+@font-face {
+    font-family: "monocraft";
+    src: url('.././styles/Monocraft.ttf');
+}
+
+:root {
+    --brand-color: #0f33ff;
+    --color-white: #ffffff;
+    --color-2: #FFF498;
+}
+
+body {
+    font-family: "monocraft";
+    background-color: #272822;
+    color: #f8f8f2;
+    margin: 0;
+    padding: 10px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-tap-highlight-color: var(--color-2);
+}
+
+::selection {
+    background: var(--color-2);
+    color: var(--color-white);
+}
+
+
+textarea::selection {
+    background: var(--color-2);
+    color: var(--color-white);
+}
+
+
+.container {
+    width: min(100%, 600px);
+    background-color: #444;
+    padding: clamp(15px, 3vw, 30px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    box-sizing: border-box;
+    min-height: calc(clamp(150px, 40vh, 250px) + 120px);
+}
+
+h1 {
+    font-size: clamp(24px, 5vw, 32px);
+    margin: 0 0 20px 0;
+    word-wrap: break-word;
+}
+
+textarea {
+    width: 100%;
+    font-size: clamp(14px, 3vw, 16px);
+    font-weight: 700;
+    border-radius: 4px;
+    resize: vertical;
+    background-color: #3c3c3a;
+    color: #f8f8f2;
+    border: 2px solid #ffffff;
+    height: clamp(150px, 40vh, 250px);
+    min-height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: "monocraft";
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+button {
+    font-family: "monocraft";
+    padding: clamp(8px, 2vw, 10px) clamp(15px, 3vw, 20px);
+    font-size: clamp(14px, 3vw, 16px);
+    background-color: #0f33ff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0;
+    white-space: nowrap;
+    width: 100%;
+    margin: 15px 0 0 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+button:disabled {
+    background-color: #0f33ff;
+    cursor: wait;
+}
+
+button:disabled::after {
+    content: '';
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    left: -30%;
+    top: 0;
+    animation: loading 1s infinite;
+    transform: skewX(-25deg);
+}
+
+@keyframes loading {
+    from {
+        left: -30%;
+    }
+
+    to {
+        left: 130%;
+    }
+}
+
+.response-area {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #3c3c3a;
+    border-radius: 4px;
+    color: #f8f8f2;
+    opacity: 0;
+    height: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.response-area.visible {
+    opacity: 1;
+    height: auto;
+    min-height: 45px;
+    transform: translateY(0);
+}
+
+.message-form {
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.message-form.sent {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+#message {
+    transition: height 0.3s ease;
+}
+
+.message-form.sent #message {
+    height: clamp(150px, 40vh, 250px);
+}
+
+a {
+    color: #0f33ff !important;
+    text-decoration: none;
+    cursor: pointer;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 4px;
+    z-index: 1000;
+    max-width: 90%;
+    word-wrap: break-word;
+}
+
+.notification.error {
+    background: #f44336;
+}
+
+.ping-area {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #a6e22e;
+}
+
+.github-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.github-link a {
+    display: inline-block;
+    filter: brightness(0) saturate(100%) invert(24%) sepia(85%) saturate(7482%) hue-rotate(238deg) brightness(97%) contrast(143%);
+}
+
+.github-link img {
+    image-rendering: pixelated;
+}
+
+.github-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: var(--brand-color);
+}
+
+@media (max-width: 400px) {
+    body {
+        padding: 5px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+        margin: 15px 0 0 0;
+    }
+}

@@ -2,8 +2,18 @@
     RewriteEngine On
     RewriteBase /
 
+    # Блокируем доступ к config.php и info.php
+    RewriteRule ^(config|info)\.php$ - [R=404,L]
+
+    # Пропускаем запросы к существующим файлам и директориям
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
 
-    RewriteRule ^([^/]+)$ $1.php [L]
+    RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|woff2?|ttf|svg)$ [NC]
+
+    # Перенаправляем все остальные запросы на index.php
+    RewriteRule ^ index.php [L]
+
+    # Указываем пользовательскую страницу ошибки 404
+    ErrorDocument 404 /errors/404.html
 </IfModule>
